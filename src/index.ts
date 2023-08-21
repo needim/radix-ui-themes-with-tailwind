@@ -46,7 +46,7 @@ type RadixColors = Exclude<
 >;
 
 const tailwindColorsToRadixMap: Record<
-  "zinc" | "neutral" | "stone" | "emerald" | "fuchsia" | "rose", // missing colors names in radix colors
+  "zinc" | "neutral" | "stone" | "emerald" | "fuchsia" | "rose",
   RadixColors | Record<string, string>
 > = {
   zinc: "sand",
@@ -81,7 +81,9 @@ export const radixThemePlugin = plugin.withOptions(
   }: {
     useTailwindColorNames?: boolean;
     useTailwindRadiusNames?: boolean;
-    mapMissingTailwindColors?: boolean | typeof tailwindColorsToRadixMap;
+    mapMissingTailwindColors?:
+      | boolean
+      | Partial<typeof tailwindColorsToRadixMap>;
   } = {}) => {
     return function () {};
   },
