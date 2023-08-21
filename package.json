@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "radix-ui-themes-with-tailwind",
   "description": "Tailwind plugin for Radix Themes",
   "main": "./dist/index.js",
@@ -15,7 +15,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "version": "pnpm run build && git add -A dist",
+    "version": "pnpm run build && git add -A",
     "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "repository": {
