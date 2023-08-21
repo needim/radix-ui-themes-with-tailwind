@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "radix-ui-themes-with-tailwind",
   "description": "Tailwind plugin for Radix Themes",
   "main": "./dist/index.js",
