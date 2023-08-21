@@ -1,25 +1,20 @@
-# Radix UI Themes with Tailwind
+# Radix UI Themes Integration with Tailwind CSS
 
-## Features
+## Key Features
 
-- (optional) You can use tailwind naming convention for colors and radius helpers
-  - You can still write `bg-red-500` `bg-blue-500` and it will point to radix color
-- (optional) You can map missing color tokens from tailwind to radix-colors
-  - For example you can map `zinc` to `sand`, `neutral` to `sage`, etc...
+- **Tailwind Color Naming**: You have the option to utilize the Tailwind naming convention for colors and radius helpers. This means you can still use familiar classes like `bg-red-500` and `bg-blue-500`, which will be linked to corresponding Radix colors.
 
-## FAQ
+- **Color Token Mapping**: Another optional feature allows you to map missing color tokens from Tailwind to Radix colors. For example, you can map `zinc` to `sand` and `neutral` to `sage`, enabling a seamless transition between the two color systems.
 
-### What is/are Radix Themes?
+## Frequently Asked Questions
 
-"Radix Themes is just a styled, opinionated component lib on top of the primitives. It’s made for when you want to kickstart a project with pre-designed, battle-tested components." (from [Radix UI Twitter](https://twitter.com/radix_ui/status/1692574289860477432))
+**What Are Radix Themes?**
 
-### Do I really need this plugin to use Radix themes?
+Radix Themes serve as a styled and opinionated component library built on top of the Radix UI primitives. They are designed to expedite project initiation with pre-designed, extensively tested components. (source: [Radix UI Twitter](https://twitter.com/radix_ui/status/1692574289860477432))
 
-No, but if you used to tailwind and don't wanna use Radix Themes' layout utilities (`<Box />`, `<Flex />`, `<Grid />` etc...) you can still develop with Tailwind (`className="flex items-center gap-2"`).
+**Is This Plugin Necessary for Using Radix Themes?**
 
-### OK, show me a demo!
-
-Sure, coming soon...
+No, the plugin is not mandatory. If you're accustomed to Tailwind and prefer not to use Radix Themes' layout utilities (such as `<Box />`, `<Flex />`, `<Grid />`), you can still develop using Tailwind classes (e.g., `className="flex items-center gap-2"`).
 
 ## Acknowledgements
 
