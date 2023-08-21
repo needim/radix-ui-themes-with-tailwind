@@ -16,7 +16,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "version": "pnpm run build && git add -A",
-    "postversion": "git push && git push --tags && rm -rf build/temp"
+    "postversion": "git push && git push --tags && pnpm publish"
   },
   "repository": {
     "type": "git",
