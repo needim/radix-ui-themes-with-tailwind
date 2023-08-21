@@ -4,7 +4,7 @@
 
 - **Tailwind Color Naming**: You have the option to utilize the Tailwind naming convention for colors and radius helpers. This means you can still use familiar classes like `bg-red-500` and `bg-blue-500`, which will be linked to corresponding Radix colors.
 
-- **Color Token Mapping**: Another optional feature allows you to map missing color tokens from Tailwind to Radix colors. For example, you can map `zinc` to `sand` and `neutral` to `sage`, enabling a seamless transition between the two color systems.
+- **Color Token Mapping**: Another optional feature allows you to map missing color tokens from Tailwind to Radix colors. For example, you can map tailwind `zinc` to radix `sand` and tailwind `neutral` to radix `sage`, enabling a seamless transition between the two color systems.
 
 ## Frequently Asked Questions
 
