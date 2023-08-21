@@ -336,3 +336,5 @@ export const radixThemePlugin = plugin.withOptions(
     };
   }
 );
+
+export default radixThemePlugin;
