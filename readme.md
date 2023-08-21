@@ -6,6 +6,45 @@
 
 - **Color Token Mapping**: Another optional feature allows you to map missing color tokens from Tailwind to Radix colors. For example, you can map tailwind `zinc` to radix `sand` and tailwind `neutral` to radix `sage`, enabling a seamless transition between the two color systems.
 
+## Usage
+
+```bash
+pnpm install radix-ui-themes-with-tailwind
+```
+
+or
+
+```bash
+npm install radix-ui-themes-with-tailwind
+```
+
+or
+
+```bash
+yarn add radix-ui-themes-with-tailwind
+```
+
+then in your `tailwind.config.js` or `tailwind.config.ts` file:
+
+```js
+import { radixThemePlugin } from "radix-ui-themes-with-tailwind";
+
+export default {
+  darkMode: ["class"],
+  content: [],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    radixThemePlugin({
+      useTailwindColorNames: true, // optional
+      useTailwindRadiusNames: true, // optional
+      mapMissingTailwindColors: true, // optional
+    }),
+  ],
+};
+```
+
 ## Frequently Asked Questions
 
 **What Are Radix Themes?**
