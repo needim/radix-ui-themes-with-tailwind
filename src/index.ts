@@ -39,9 +39,15 @@ function getColorTokenName(
   return alpha ? (("a" + map[number]) as string) : (map[number] as number);
 }
 
-const defaultTailwindColorsToRadixColorsMap: Record<
-  string,
-  string | Record<string, string>
+type RadixColors = Exclude<
+  | (typeof radixTheme.themeAccentColorsOrdered)[number]
+  | (typeof radixTheme.themeGrayColorsGrouped)[0]["values"][number],
+  "auto"
+>;
+
+const tailwindColorsToRadixMap: Record<
+  "zinc" | "neutral" | "stone" | "emerald" | "fuchsia" | "rose", // missing colors names in radix colors
+  RadixColors | Record<string, string>
 > = {
   zinc: "sand",
   neutral: "sage",
@@ -51,19 +57,39 @@ const defaultTailwindColorsToRadixColorsMap: Record<
   rose: "crimson",
 };
 
+const radixRadiusToTailwindMap = {
+  1: "xxs",
+  2: "xs",
+  3: "sm",
+  4: "md",
+  5: "lg",
+  6: "xl",
+} as const;
+
+function getRadiusTokenName(
+  radius: keyof typeof radixRadiusToTailwindMap,
+  useTailwindColorNames?: boolean
+): string | number {
+  return useTailwindColorNames ? radixRadiusToTailwindMap[radius] : radius;
+}
+
 export const radixThemePlugin = plugin.withOptions(
   ({
     useTailwindColorNames = false,
+    useTailwindRadiusNames = false,
     mapMissingTailwindColors = false,
   }: {
     useTailwindColorNames?: boolean;
-    mapMissingTailwindColors?:
-      | boolean
-      | typeof defaultTailwindColorsToRadixColorsMap;
+    useTailwindRadiusNames?: boolean;
+    mapMissingTailwindColors?: boolean | typeof tailwindColorsToRadixMap;
   } = {}) => {
     return function () {};
   },
-  ({ useTailwindColorNames, mapMissingTailwindColors }) => {
+  ({
+    useTailwindColorNames,
+    useTailwindRadiusNames,
+    mapMissingTailwindColors,
+  }) => {
     function generateTailwindColors(colorName: string) {
       const c = {
         surface: `var(--color-surface-${colorName})`,
@@ -245,13 +271,15 @@ export const radixThemePlugin = plugin.withOptions(
           "96": "calc(384px * var(--scaling))",
         },
         borderRadius: {
-          none: "0",
-          xsmall: "var(--radius-1)",
-          small: "var(--radius-3)",
-          medium: "var(--radius-4)",
-          DEFAULT: "var(--radius-4)",
-          large: "var(--radius-5)",
-          full: "var(--radius-6)",
+          none: "0px",
+          [getRadiusTokenName(1, useTailwindRadiusNames)]: "var(--radius-1)",
+          [getRadiusTokenName(2, useTailwindRadiusNames)]: "var(--radius-2)",
+          [getRadiusTokenName(3, useTailwindRadiusNames)]: "var(--radius-3)",
+          DEFAULT: "var(--radius-3)",
+          [getRadiusTokenName(4, useTailwindRadiusNames)]: "var(--radius-4)",
+          [getRadiusTokenName(5, useTailwindRadiusNames)]: "var(--radius-5)",
+          [getRadiusTokenName(6, useTailwindRadiusNames)]: "var(--radius-6)",
+          full: "99999px",
         },
         colors: {
           inherit: "inherit",
