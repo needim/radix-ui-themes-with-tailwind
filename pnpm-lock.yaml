@@ -6,10 +6,10 @@ settings:
 
 devDependencies:
   '@radix-ui/themes':
-    specifier: ^1.0.0
-    version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+    specifier: 1.1.0
+    version: 1.1.0(react-dom@18.2.0)(react@18.2.0)
   tailwindcss:
-    specifier: ^3.3.3
+    specifier: 3.3.3
     version: 3.3.3
   tsup:
     specifier: ^7.2.0
@@ -309,8 +309,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@radix-ui/colors@2.0.1:
-    resolution: {integrity: sha512-EhWky2oSIf5y+BDfrAY+Rykrkh7m2/M/bgCVRr3M+Hnr4JOh+mtFZLHUS1j/WzaPw1uvd0vwhK3cbxsR0QnCgw==}
+  /@radix-ui/colors@2.1.0:
+    resolution: {integrity: sha512-gcBnxjS2u2c6thQz/9K1+Pt2ZYcm5WKU4SLi0emYkRmYbVUw+37rlc5wgLtYOsSsRP9nxVtbJJYj6WVO7UUmZg==}
     dev: true
 
   /@radix-ui/number@1.0.1:
@@ -1276,8 +1276,8 @@ packages:
       '@babel/runtime': 7.22.10
     dev: true
 
-  /@radix-ui/themes@1.0.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-4I4gLPN24QJxc1IMaSCNuUdSciuz7FMpAFOxVE8z+Uz5/u9i9AdUh7quA8zmQ37mec2wwwZHrXCHnkfiM1WggA==}
+  /@radix-ui/themes@1.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-deMf3on8p37yuJQkibnyI2TdtXnnNTObeLDk2jXl4McR6kN4KR4xFAv184y6WuBEKUUGBcmy9O6TK4fv1X7qbw==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -1289,7 +1289,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@radix-ui/colors': 2.0.1
+      '@radix-ui/colors': 2.1.0
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-accessible-icon': 1.0.3(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-alert-dialog': 1.0.4(react-dom@18.2.0)(react@18.2.0)

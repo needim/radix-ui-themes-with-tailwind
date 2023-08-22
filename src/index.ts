@@ -73,7 +73,7 @@ function getRadiusTokenName(
   return useTailwindColorNames ? radixRadiusToTailwindMap[radius] : radius;
 }
 
-export const radixThemePlugin = plugin.withOptions(
+const radixThemePlugin = plugin.withOptions(
   ({
     useTailwindColorNames = false,
     useTailwindRadiusNames = false,
