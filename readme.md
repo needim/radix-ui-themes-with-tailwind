@@ -9,25 +9,25 @@
 ## Usage
 
 ```bash
-pnpm install radix-ui-themes-with-tailwind
+pnpm install radix-ui-themes-with-tailwind -D
 ```
 
 or
 
 ```bash
-npm install radix-ui-themes-with-tailwind
+npm install radix-ui-themes-with-tailwind -D
 ```
 
 or
 
 ```bash
-yarn add radix-ui-themes-with-tailwind
+yarn add radix-ui-themes-with-tailwind -D
 ```
 
 then in your `tailwind.config.js` or `tailwind.config.ts` file:
 
 ```js
-import { radixThemePlugin } from "radix-ui-themes-with-tailwind";
+import radixThemePlugin from "radix-ui-themes-with-tailwind";
 
 export default {
   darkMode: ["class"],
