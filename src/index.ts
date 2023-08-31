@@ -1,77 +1,14 @@
 import plugin from "tailwindcss/plugin";
-import * as radixTheme from "@radix-ui/themes";
+
 import * as colors from "tailwindcss/colors";
-
-const accentColorNames: string[] = [];
-const grayColorNames: string[] = [];
-
-radixTheme.themeAccentColorsGrouped.map((group) => {
-  accentColorNames.push(...group.values.filter((color) => color !== "gray"));
-});
-radixTheme.themeGrayColorsGrouped.map((group) => {
-  grayColorNames.push(...group.values.filter((color) => color !== "auto"));
-});
-
-function getColorTokenName(
-  number: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12,
-  useTailwindColorNames?: boolean,
-  alpha?: boolean
-): number | string {
-  const map: Record<number, number> = {
-    1: 50,
-    2: 50,
-    3: 100,
-    4: 200,
-    5: 300,
-    6: 400,
-    7: 500,
-    8: 600,
-    9: 700,
-    10: 800,
-    11: 900,
-    12: 950,
-  } as const;
-
-  if (!useTailwindColorNames) {
-    return alpha ? "a" + number : number;
-  }
-
-  return alpha ? (("a" + map[number]) as string) : (map[number] as number);
-}
-
-type RadixColors = Exclude<
-  | (typeof radixTheme.themeAccentColorsOrdered)[number]
-  | (typeof radixTheme.themeGrayColorsGrouped)[0]["values"][number],
-  "auto"
->;
-
-const tailwindColorsToRadixMap: Record<
-  "zinc" | "neutral" | "stone" | "emerald" | "fuchsia" | "rose",
-  RadixColors | Record<string, string>
-> = {
-  zinc: "sand",
-  neutral: "sage",
-  stone: "sand",
-  emerald: "grass",
-  fuchsia: "plum",
-  rose: "crimson",
-};
-
-const radixRadiusToTailwindMap = {
-  1: "xxs",
-  2: "xs",
-  3: "sm",
-  4: "md",
-  5: "lg",
-  6: "xl",
-} as const;
-
-function getRadiusTokenName(
-  radius: keyof typeof radixRadiusToTailwindMap,
-  useTailwindColorNames?: boolean
-): string | number {
-  return useTailwindColorNames ? radixRadiusToTailwindMap[radius] : radius;
-}
+import {
+  accentColorNames,
+  getColorDefinitions,
+  getColorTokenName,
+  getRadiusTokenName,
+  grayColorNames,
+  tailwindColorsToRadixMap,
+} from "./utils";
 
 const radixThemePlugin = plugin.withOptions(
   ({
@@ -94,94 +31,14 @@ const radixThemePlugin = plugin.withOptions(
   }) => {
     function generateTailwindColors(colorName: string) {
       const c = {
-        surface: `var(--color-surface-${colorName})`,
-        [getColorTokenName(1, useTailwindColorNames)]: `var(--${colorName}-1)`,
-        [getColorTokenName(2, useTailwindColorNames)]: `var(--${colorName}-2)`,
-        [getColorTokenName(3, useTailwindColorNames)]: `var(--${colorName}-3)`,
-        [getColorTokenName(4, useTailwindColorNames)]: `var(--${colorName}-4)`,
-        [getColorTokenName(5, useTailwindColorNames)]: `var(--${colorName}-5)`,
-        [getColorTokenName(6, useTailwindColorNames)]: `var(--${colorName}-6)`,
-        [getColorTokenName(7, useTailwindColorNames)]: `var(--${colorName}-7)`,
-        [getColorTokenName(8, useTailwindColorNames)]: `var(--${colorName}-8)`,
-        [getColorTokenName(9, useTailwindColorNames)]: `var(--${colorName}-9)`,
-        "9-contrast": `var(--${colorName}-9-contrast)`,
-        [getColorTokenName(
-          10,
-          useTailwindColorNames
-        )]: `var(--${colorName}-10)`,
-        [getColorTokenName(
-          11,
-          useTailwindColorNames
-        )]: `var(--${colorName}-11)`,
-        [getColorTokenName(
-          12,
-          useTailwindColorNames
-        )]: `var(--${colorName}-12)`,
-        DEFAULT: `var(--${colorName}-9)`,
-        [getColorTokenName(
-          1,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a1)`,
-        [getColorTokenName(
-          2,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a2)`,
-        [getColorTokenName(
-          3,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a3)`,
-        [getColorTokenName(
-          4,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a4)`,
-        [getColorTokenName(
-          5,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a5)`,
-        [getColorTokenName(
-          6,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a6)`,
-        [getColorTokenName(
-          7,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a7)`,
-        [getColorTokenName(
-          8,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a8)`,
-        [getColorTokenName(
-          9,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a9)`,
-        [getColorTokenName(
-          10,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a10)`,
-        [getColorTokenName(
-          11,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a11)`,
-        [getColorTokenName(
-          12,
-          useTailwindColorNames,
-          true
-        )]: `var(--${colorName}-a12)`,
+        ...getColorDefinitions(colorName, false, useTailwindColorNames),
+        ...getColorDefinitions(colorName, true, useTailwindColorNames),
       };
 
       if (grayColorNames.includes(colorName)) {
-        (c as any)[`2-translucent`] = `var(--${colorName}-2-translucent)`;
+        c[
+          `${getColorTokenName(2, useTailwindColorNames, false)}-translucent`
+        ] = `var(--${colorName}-2-translucent)`;
       }
 
       return c;
@@ -190,7 +47,7 @@ const radixThemePlugin = plugin.withOptions(
     const allRadixColors = [...accentColorNames, ...grayColorNames].reduce<
       Record<string, Record<string, string>>
     >((acc, colorName) => {
-      acc[colorName] = generateTailwindColors(colorName);
+      acc[colorName] = { ...generateTailwindColors(colorName) };
       return acc;
     }, {});
 
@@ -300,67 +157,10 @@ const radixThemePlugin = plugin.withOptions(
             translucent: "var(--color-panel-translucent)",
           },
           selection: "var(--color-selection-root)",
-          accent: {
-            surface: "var(--color-surface-accent)",
-            1: "var(--accent-1)",
-            2: "var(--accent-2)",
-            3: "var(--accent-3)",
-            4: "var(--accent-4)",
-            5: "var(--accent-5)",
-            6: "var(--accent-6)",
-            7: "var(--accent-7)",
-            8: "var(--accent-8)",
-            9: "var(--accent-9)",
-            "9-contrast": "var(--accent-9-contrast)",
-            10: "var(--accent-10)",
-            11: "var(--accent-11)",
-            12: "var(--accent-12)",
-            DEFAULT: "var(--accent-9)",
-            a1: "var(--accent-a1)",
-            a2: "var(--accent-a2)",
-            a3: "var(--accent-a3)",
-            a4: "var(--accent-a4)",
-            a5: "var(--accent-a5)",
-            a6: "var(--accent-a6)",
-            a7: "var(--accent-a7)",
-            a8: "var(--accent-a8)",
-            a9: "var(--accent-a9)",
-            a10: "var(--accent-a10)",
-            a11: "var(--accent-a11)",
-            a12: "var(--accent-a12)",
-          },
-          gray: {
-            surface: "var(--gray-surface)",
-            1: "var(--gray-1)",
-            2: "var(--gray-2)",
-            "2-translucent": "var(--gray-2-translucent)",
-            3: "var(--gray-3)",
-            4: "var(--gray-4)",
-            5: "var(--gray-5)",
-            6: "var(--gray-6)",
-            7: "var(--gray-7)",
-            8: "var(--gray-8)",
-            9: "var(--gray-9)",
-            "9-contrast": "var(--gray-9-contrast)",
-            10: "var(--gray-10)",
-            11: "var(--gray-11)",
-            12: "var(--gray-12)",
-            DEFAULT: "var(--gray-9)",
-            a1: "var(--gray-a1)",
-            a2: "var(--gray-a2)",
-            a3: "var(--gray-a3)",
-            a4: "var(--gray-a4)",
-            a5: "var(--gray-a5)",
-            a6: "var(--gray-a6)",
-            a7: "var(--gray-a7)",
-            a8: "var(--gray-a8)",
-            a9: "var(--gray-a9)",
-            a10: "var(--gray-a10)",
-            a11: "var(--gray-a11)",
-            a12: "var(--gray-a12)",
-          },
           ...allRadixColors,
           ...mappingsOfMissingTailwindColors,
+          accent: generateTailwindColors("accent"),
+          gray: generateTailwindColors("gray"),
         },
       },
     };
