@@ -7,7 +7,7 @@ export default defineConfig(({ command }) => {
     plugins: [react()],
     base: "/",
     build: {
-      outDir: "../docs-serve",
+      outDir: "../docs",
     },
   };
 

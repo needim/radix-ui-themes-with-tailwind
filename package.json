@@ -13,8 +13,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "docs:dev": "cd docs && pnpm run dev",
-    "docs:build": "cd docs && pnpm run build",
+    "docs:dev": "cd docs-dev && pnpm run dev",
+    "docs:build": "cd docs-dev && pnpm run build",
     "debug": "npx ts-node test/tailwind.config.ts",
     "version": "pnpm run build && pnpm run docs:build && git add -A",
     "postversion": "git push && git push --tags && pnpm publish"
