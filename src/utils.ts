@@ -14,8 +14,8 @@ radixTheme.themeGrayColorsGrouped.map((group) => {
 
 export function getColorTokenName(
   number: RadixColorScales,
-  useTailwindColorNames: boolean,
-  alpha: boolean
+  useTailwindColorNames?: boolean,
+  alpha?: boolean
 ): number | string {
   const map: Record<number, number> = {
     1: 25,
@@ -55,7 +55,7 @@ export const getColorDefinitions = (
       ] = `var(--${color}-${alpha ? "a" : ""}${i + 1})`;
       return acc;
     },
-    {}
+    {} as Record<string, string>
   );
 
   if (!alpha) {

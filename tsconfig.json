@@ -2,10 +2,14 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "ESNext",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "docs-dev", "docs"]
 }

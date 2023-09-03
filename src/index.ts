@@ -1,5 +1,4 @@
 import plugin from "tailwindcss/plugin";
-
 import * as colors from "tailwindcss/colors";
 import {
   accentColorNames,
@@ -10,25 +9,32 @@ import {
   tailwindColorsToRadixMap,
 } from "./utils";
 
+export type RadixThemePluginOptions = {
+  useTailwindColorNames?: boolean;
+  useTailwindRadiusNames?: boolean;
+  mapMissingTailwindColors?: boolean | Partial<typeof tailwindColorsToRadixMap>;
+};
+
 const radixThemePlugin = plugin.withOptions(
-  ({
-    useTailwindColorNames = false,
-    useTailwindRadiusNames = false,
-    mapMissingTailwindColors = false,
-  }: {
-    useTailwindColorNames?: boolean;
-    useTailwindRadiusNames?: boolean;
-    mapMissingTailwindColors?:
-      | boolean
-      | Partial<typeof tailwindColorsToRadixMap>;
-  } = {}) => {
-    return function () {};
+  ({}: RadixThemePluginOptions) => {
+    return ({ addBase }) => {
+      addBase({
+        "*": {
+          outlineColor: "currentColor",
+        },
+        "html, body": {
+          height: "100%",
+          "-webkit-font-smoothing": "antialiased",
+          "-moz-osx-font-smoothing": "grayscale",
+        },
+      });
+    };
   },
   ({
-    useTailwindColorNames,
-    useTailwindRadiusNames,
-    mapMissingTailwindColors,
-  }) => {
+    useTailwindColorNames = true,
+    useTailwindRadiusNames = true,
+    mapMissingTailwindColors = true,
+  }: RadixThemePluginOptions) => {
     function generateTailwindColors(colorName: string) {
       const c = {
         ...getColorDefinitions(colorName, false, useTailwindColorNames),
@@ -91,7 +97,126 @@ const radixThemePlugin = plugin.withOptions(
     }
 
     return {
+      darkMode: "class",
       theme: {
+        fontSize: {
+          xs: [
+            "var(--font-size-1)",
+            {
+              letterSpacing: "var(--letter-spacing-1)",
+              lineHeight: "var(--line-height-1)",
+            },
+          ],
+          sm: [
+            "var(--font-size-2)",
+            {
+              letterSpacing: "var(--letter-spacing-2)",
+              lineHeight: "var(--line-height-2)",
+            },
+          ],
+          base: [
+            "var(--font-size-3)",
+            {
+              letterSpacing: "var(--letter-spacing-3)",
+              lineHeight: "var(--line-height-3)",
+            },
+          ],
+          lg: [
+            "var(--font-size-4)",
+            {
+              letterSpacing: "var(--letter-spacing-4)",
+              lineHeight: "var(--line-height-4)",
+            },
+          ],
+          xl: [
+            "var(--font-size-5)",
+            {
+              letterSpacing: "var(--letter-spacing-5)",
+              lineHeight: "var(--line-height-5)",
+            },
+          ],
+          "2xl": [
+            "var(--font-size-6)",
+            {
+              letterSpacing: "var(--letter-spacing-6)",
+              lineHeight: "var(--line-height-6)",
+            },
+          ],
+          "3xl": [
+            "var(--font-size-7)",
+            {
+              letterSpacing: "var(--letter-spacing-7)",
+              lineHeight: "var(--line-height-7)",
+            },
+          ],
+          "4xl": [
+            "var(--font-size-8)",
+            {
+              letterSpacing: "var(--letter-spacing-8)",
+              lineHeight: "var(--line-height-8)",
+            },
+          ],
+          "5xl": [
+            "var(--font-size-9)",
+            {
+              letterSpacing: "var(--letter-spacing-9)",
+              lineHeight: "var(--line-height-9)",
+            },
+          ],
+        },
+        lineHeight: {
+          1: "var(--line-height-1)",
+          2: "var(--line-height-2)",
+          3: "var(--line-height-3)",
+          4: "var(--line-height-4)",
+          5: "var(--line-height-5)",
+          6: "var(--line-height-6)",
+          7: "var(--line-height-7)",
+          8: "var(--line-height-8)",
+          9: "var(--line-height-9)",
+          none: "1",
+          tight: "1.25",
+          snug: "1.375",
+          normal: "1.5",
+          relaxed: "1.625",
+          loose: "2",
+        },
+        fontFamily: {
+          sans: "var(--default-font-family)",
+          strong: "var(--strong-font-family)",
+          heading: "var(--heading-font-family)",
+          code: "var(--code-font-family)",
+          em: "var(--em-font-family)",
+          quote: "var(--quote-font-family)",
+        },
+        letterSpacing: {
+          1: "var(--letter-spacing-1)",
+          2: "var(--letter-spacing-2)",
+          3: "var(--letter-spacing-3)",
+          4: "var(--letter-spacing-4)",
+          5: "var(--letter-spacing-5)",
+          6: "var(--letter-spacing-6)",
+          7: "var(--letter-spacing-7)",
+          8: "var(--letter-spacing-8)",
+          9: "var(--letter-spacing-9)",
+          tighter: "-0.05em",
+          tight: "-0.025em",
+          normal: "0",
+          wide: "0.025em",
+          wider: "0.05em",
+          widest: "0.1em",
+        },
+        fontWeight: {
+          thin: "100",
+          extralight: "200",
+          light: "var(--font-weight-light)",
+          normal: "var(--font-weight-regular)",
+          medium: "var(--font-weight-medium)",
+          semibold: "600",
+          bold: "var(--font-weight-bold)",
+          extrabold: "800",
+          black: "900",
+        },
         spacing: {
           "0": "0px",
           px: "1px",
@@ -144,9 +269,9 @@ const radixThemePlugin = plugin.withOptions(
           inherit: "inherit",
           transparent: "transparent",
           current: "currentColor",
-          background: "var(--color-background)",
           white: colors.white,
           black: colors.black,
+          background: "var(--color-background)",
           surface: {
             DEFAULT: "var(--color-surface)",
             accent: "var(--color-surface-accent)",
