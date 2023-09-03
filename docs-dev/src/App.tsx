@@ -4,10 +4,12 @@ import {
   Box,
   Code,
   Container,
+  Em,
   Flex,
   Heading,
   Link,
   ScrollArea,
+  Strong,
   Text,
   Theme,
 } from "@radix-ui/themes";
@@ -121,7 +123,7 @@ function App() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Heading size="4" className="mb-2 mt-5">
-                    Radix UI Themes
+                    Radix UI Themes Layout
                   </Heading>
 
                   <div>
@@ -229,11 +231,95 @@ function App() {
                       className="inline-flex items-center"
                       href="https://github.com/needim/radix-ui-themes-with-tailwind/blob/main/src/index.ts#L220-L255"
                     >
-                      Source code <ArrowTopRightIcon />
+                      source code <ArrowTopRightIcon />
                     </Link>
                   </Callout.Text>
                 </Callout.Root>
               </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Heading size="4" className="mb-2 mt-5">
+                    Radix UI Themes Typography
+                  </Heading>
+
+                  <div>
+                    <CodeBlock
+                      language="tsx"
+                      value={`<Text as="p">
+  The <Em>most</Em> important thing to remember is,{" "}
+  <Strong>stay positive</Strong>.
+</Text>
+<Text size="4" as="p">
+  The <Em>most</Em> important thing to remember is,{" "}
+  <Strong>stay positive</Strong>.
+</Text>
+<Heading size="4">Typographic principles</Heading>
+<Heading size="5">Typographic principles</Heading>
+<Heading size="6">Typographic principles</Heading>
+<Heading size="7">Typographic principles</Heading>
+<Heading size="8">Typographic principles</Heading>
+<Heading size="9">Typographic principles</Heading>`}
+                    >
+                      <Text as="p">
+                        The <Em>most</Em> important thing to remember is,{" "}
+                        <Strong>stay positive</Strong>.
+                      </Text>
+                      <Text size="4" as="p">
+                        The <Em>most</Em> important thing to remember is,{" "}
+                        <Strong>stay positive</Strong>.
+                      </Text>
+                      <Heading size="4">Typographic principles</Heading>
+                      <Heading size="5">Typographic principles</Heading>
+                      <Heading size="6">Typographic principles</Heading>
+                      <Heading size="7">Typographic principles</Heading>
+                      <Heading size="8">Typographic principles</Heading>
+                      <Heading size="9">Typographic principles</Heading>
+                    </CodeBlock>
+                  </div>
+                </div>
+                <div>
+                  <Heading size="4" className="mb-2 mt-5">
+                    With Tailwind CSS
+                  </Heading>
+
+                  <div>
+                    <CodeBlock
+                      language="tsx"
+                      value={`<p>
+  The <em>most</em> important thing to remember is,{" "}
+  <strong>stay positive</strong>.
+</p>
+<p className="text-lg">
+  The <em>most</em> important thing to remember is,{" "}
+  <strong>stay positive</strong>.
+</p>
+<h6>Typographic principles</h6>
+<h5>Typographic principles</h5>
+<h4>Typographic principles</h4>
+<h3>Typographic principles</h3>
+<h2>Typographic principles</h2>
+<h1>Typographic principles</h1>`}
+                    >
+                      <p>
+                        The <em>most</em> important thing to remember is,{" "}
+                        <strong>stay positive</strong>.
+                      </p>
+                      <p className="text-lg">
+                        The <em>most</em> important thing to remember is,{" "}
+                        <strong>stay positive</strong>.
+                      </p>
+                      <h6>Typographic principles</h6>
+                      <h5>Typographic principles</h5>
+                      <h4>Typographic principles</h4>
+                      <h3>Typographic principles</h3>
+                      <h2>Typographic principles</h2>
+                      <h1>Typographic principles</h1>
+                    </CodeBlock>
+                  </div>
+                </div>
+              </div>
+
               <Heading size="5" className="mb-8 mt-10">
                 Using Radix colors with Tailwind
               </Heading>

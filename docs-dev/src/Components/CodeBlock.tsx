@@ -20,10 +20,7 @@ export function CodeBlock({
   return (
     <div className="flex flex-col">
       <Refractor
-        className={cn(
-          "!rounded-none rounded-b-none !bg-gray-100 Pre",
-          className
-        )}
+        className={cn("!rounded-none rounded-t !bg-gray-100 Pre", className)}
         value={value}
         {...props}
       />
