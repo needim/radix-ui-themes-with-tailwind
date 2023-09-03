@@ -1,10 +1,3 @@
-// import { useEffect, useState } from "react";
-// import colorPalette from "tailwindcss/colors";
-// import { objKeys } from "./utils";
-// import { kebabToTitleCase } from '@/utils/kebabToTitleCase'
-// import dlv from "dlv";
-// import { Transition } from '@headlessui/react'
-
 import resolveConfig from "tailwindcss/resolveConfig";
 import config from "../tailwind.config";
 import { Config, RecursiveKeyValuePair } from "tailwindcss/types/config";
