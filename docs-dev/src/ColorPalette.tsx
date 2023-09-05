@@ -11,8 +11,6 @@ export function ColorPaletteReference() {
   } = {};
 
   Object.entries(fullConfig.theme?.colors || {}).forEach(([key, value]) => {
-    console.log("key", key);
-    console.log("value", value);
     const forbiddenKeys = ["panel", "surface", "accent"];
 
     if (typeof value !== "string" && !forbiddenKeys.includes(key)) {
