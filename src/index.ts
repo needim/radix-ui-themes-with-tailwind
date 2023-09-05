@@ -66,6 +66,9 @@ export const getColorDefinitions = (
     ] = `var(--${color}-9-contrast)`;
     colors["surface"] = `var(--${color}-surface)`;
     colors["DEFAULT"] = `var(--${color}-9)`;
+    if (color === "accent") {
+      colors["surface"] = `var(--color-surface-accent)`;
+    }
   }
 
   return colors;
